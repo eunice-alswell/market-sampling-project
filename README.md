@@ -2,11 +2,21 @@
 
 A comprehensive data management system for market sampling campaigns, designed to track toothpaste brand promotions across various locations and sampling types in Ghana.
 
-## 📋 Project Overview
+##  Visualizations
+
+### Database Entity-Relationship Model
+![Market Sampling ER Model](images/Market%20Sampling%20ER%20Model.png)
+
+### Dashboard
+![Market Sampling Power BI Dashboard](images/market-sampling-dashboard.png)
+
+The ER diagram illustrates the complete database schema showing relationships between sampling events, respondents, areas, promoters, and lookup tables.
+
+##  Project Overview
 
 This project provides a complete solution for managing and analyzing market sampling campaigns. It includes a PostgreSQL database schema for storing sampling data and a Python-based data generation tool for creating realistic dummy data for testing and development purposes.
 
-## 🎯 Features
+## Features
 
 - **Multi-dimensional Database Schema**: Well-structured relational database design with fact and dimension tables
 - **Geographic Coverage**: Supports sampling across multiple regions and districts in Ghana
@@ -19,7 +29,29 @@ This project provides a complete solution for managing and analyzing market samp
 - **Respondent Tracking**: Comprehensive respondent information including demographics, preferences, and opt-in status
 - **Dummy Data Generation**: Automated generation of realistic test data using Python and Faker library
 
-## 🗄️ Database Schema
+## Project Structure
+
+```
+market-sampling-project/
+├── src/                    # Source code
+│   └── generate_dummy_data.py    # Main data generation script
+├── notebooks/              # Jupyter notebooks
+│   └── market_sampling_dummy_data_generation.ipynb
+├── database/              # Database schemas and scripts
+│   └── Market_Sampling_ER_Model_postgresql.sql
+├── data/                  # Generated data files (gitignored)
+│   └── market_sampling_dummy_data.xlsx
+├── docs/                  # Documentation and reports
+│   ├── Market_Sampling_ER_Model.pdf
+│   └── Market Sampling Performance Dashboard.pbix
+├── images/                # Diagrams and visualizations
+│   └── Market Sampling ER Model.png
+├── .gitignore            # Git ignore file
+├── requirements.txt      # Python dependencies
+└── README.md            # This file
+```
+
+## Database Schema
 
 The database consists of the following tables:
 
@@ -40,7 +72,7 @@ The database consists of the following tables:
 - Support for institutional sampling with institution type tracking
 - Date tracking for both sampling events and respondent submissions
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -69,26 +101,47 @@ pip install -r requirements.txt
 
 3. Set up the PostgreSQL database:
 ```bash
-psql -U your_username -d your_database -f Market_Sampling_ER_Model_postgresql.sql
+psql -U your_username -d your_database -f database/Market_Sampling_ER_Model_postgresql.sql
 ```
 
-## 💻 Usage
+## Usage
 
-### Generating Dummy Data
+### Method 1: Using Python Script (Recommended)
+
+Run the Python script directly:
+```bash
+python src/generate_dummy_data.py
+```
+
+The script will:
+- Generate realistic dummy data for all tables
+- Save the data to `data/market_sampling_dummy_data.xlsx`
+- Display statistics about generated records
+
+### Method 2: Using Jupyter Notebook
 
 1. Open the Jupyter notebook:
 ```bash
-jupyter notebook market_sampling_dummy_data_generation.ipynb
+jupyter notebook notebooks/market_sampling_dummy_data_generation.ipynb
 ```
 
 2. Run all cells to generate dummy data
 
-3. The script will create an Excel file (`market_sampling_dummy_data.xlsx`) with the following sheets:
+3. The script will create an Excel file (`data/market_sampling_dummy_data.xlsx`) with the following sheets:
    - **Area**: Geographic location data
    - **Promoter**: Promoter information
    - **SamplingFact**: Sampling event records
    - **Respondents**: Individual respondent data
    - **SamplingType**: Sampling type lookup table
+
+### Script Features
+
+The `generate_dummy_data.py` script includes:
+- **Modular functions**: Each data generation step is encapsulated in a function
+- **Configurable parameters**: Easy to modify number of records, ID ranges, etc.
+- **Reproducible results**: Uses seeded random generation (seed=42)
+- **Type hints**: Clear function signatures for better code documentation
+- **Comprehensive docstrings**: Detailed documentation for all functions
 
 ### Data Configuration
 
@@ -99,7 +152,7 @@ The dummy data generation includes:
 - **Age Ranges**: 18–24, 25–34, 35–44, 45–54, 55+
 - **Toothpaste Brands**: Pepsodent, Kel, Colgate, Close-Up, Oral-B, Sensodyne
 
-## 📊 Data Model
+## Data Model
 
 ### Sampling Event Attributes
 
@@ -133,14 +186,26 @@ You can customize the data generation by modifying the following variables in th
 - `toothpaste_brands`: Add or remove brand names
 - `reasons`: Customize participation reasons
 
-## 📈 Use Cases
+## Analytics and Reporting
+
+### Power BI Dashboard
+The project includes a Power BI dashboard (`docs/Market Sampling Performance Dashboard.pbix`) for visualizing:
+- Sampling performance by region and district
+- Promoter effectiveness analysis
+- Brand preference trends
+- Respondent demographics and participation patterns
+- Time-series analysis of sampling campaigns
+
+To use the dashboard, import the generated Excel data into Power BI and refresh the data source.
+
+## Use Cases
 
 - **Market Research**: Track and analyze brand preferences across different regions
 - **Campaign Management**: Monitor promoter performance and sampling effectiveness
 - **Business Intelligence**: Generate insights on geographic and demographic trends
 - **Data Analytics**: Practice data analysis and visualization with realistic datasets
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Database**: PostgreSQL
 - **Programming Language**: Python 3
@@ -150,7 +215,13 @@ You can customize the data generation by modifying the following variables in th
   - Faker (synthetic data generation)
 - **Tools**: Jupyter Notebook
 
-## 📝 Database Tables Schema
+## Documentation
+
+Additional documentation is available in the `docs/` folder:
+- **ER Model PDF**: Detailed entity-relationship diagram (`Market_Sampling_ER_Model.pdf`)
+- **Power BI Dashboard**: Interactive analytics dashboard (`Market Sampling Performance Dashboard.pbix`)
+
+## Database Tables Schema
 
 ### SamplingTable
 - `samplingID` (PRIMARY KEY)
@@ -175,11 +246,11 @@ You can customize the data generation by modifying the following variables in th
 - `optInOtherProducts`
 - `Dateofsubmission`
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
@@ -189,13 +260,13 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - GitHub: [@eunice-alswell](https://github.com/eunice-alswell)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Faker library for realistic dummy data generation
 - PostgreSQL community for excellent documentation
 - All contributors and users of this project
 
-## 📧 Contact
+## Contact
 
 For questions or feedback, please open an issue on GitHub or contact the repository owner.
 

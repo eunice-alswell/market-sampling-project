@@ -148,5 +148,8 @@ Thumbs.db
 *.swo
 *~
 
-# Project specific
-market_sampling_dummy_data.xlsx
+# # Project specific
+# data/*.xlsx
+# data/*.xls
+# data/*.csv
+# *.pbix
